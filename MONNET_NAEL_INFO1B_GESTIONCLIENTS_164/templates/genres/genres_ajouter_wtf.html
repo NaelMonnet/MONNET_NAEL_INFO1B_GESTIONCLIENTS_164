@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %} Ajouter une PERSONNE (WTF) {% endblock %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <p>
+                Ajouter une nouvelle PERSONNE (WTForms)
+            </p>
+            <form action="{{ url_for('genres_ajouter_wtf') }}" method="POST" novalidate>
+                <!-- Protection contre les attaques Cross-Site Request Forgery (CSRF) -->
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    <p>
+                        {{ form.nom_genre_wtf.label }}<br>
+                        {{ form.nom_genre_wtf(size=32) }}<br>
+                        {% for error in form.nom_genre_wtf.errors %}
+                            <span style="color: red;">[{{ error }}]</span>
+                        {% endfor %}
+                    </p>
+                </div>
+                <div class="form-group">
+                    <p>
+                        {{ form.prenom_genre_wtf.label }}<br>
+                        {{ form.prenom_genre_wtf(size=32) }}<br>
+                        {% for error in form.prenom_genre_wtf.errors %}
+                            <span style="color: red;">[{{ error }}]</span>
+                        {% endfor %}
+                    </p>
+                </div>
+                <div class="form-group">
+                    <p>
+                        {{ form.date_genre_wtf_essai.label }}<br>
+                        {{ form.date_genre_wtf_essai() }}<br>
+                        {% for error in form.date_genre_wtf_essai.errors %}
+                            <span style="color: red;">[{{ error }}]</span>
+                        {% endfor %}
+                    </p>
+                </div>
+                {{ form.submit(class="btn btn-primary") }}
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %} Afficher PERSONNE {% endblock %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <p>
+
+            </p>
+            {% if data %}
+            <table class="table table-bordered table-sm">
+                <thead>
+                    <tr>
+                        <th class="align-middle">Id</th>
+                        <th class="align-middle">Prénom Personnes</th>
+                        <th class="align-middle">Nom Personnes</th>
+                        <th class="align-middle">Date de naissance</th>
+                        <th class="align-middle"></th>
+                        <th class="align-middle"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in data %}
+                    <tr>
+                        <td class="align-middle">{{ row.id_personne }}</td>
+                        <td class="align-middle">{{ row.prenom_pers }}</td>
+                        <td class="align-middle">{{ row.nom_pers }}</td>
+                        <td class="align-middle">{{ row.date_naiss_pers }}</td>
+                        <td class="text-center align-middle">
+                            <td class="text-center align-middle">
+                            <a class="btn btn-primary" href="{{ url_for('genres_ajouter_wtf') }}" role="button">Ajouter</a>
+                        </td>
+                        <td class="text-center align-middle">
+                            <a class="btn btn-warning" href="{{ url_for('genre_update_wtf', id_genre_btn_edit_html=row.id_personne) }}" role="button">Edit</a>
+                        </td>
+                        <td class="text-center align-middle">
+                            <a class="btn btn-danger" href="{{ url_for('genre_delete_wtf', id_genre_btn_delete_html=row.id_personne) }}" role="button">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p>Aucun genre.</p>
+            {% endif %}
+		</div>
+	</div>
+</div>
+{% endblock %}
+```
